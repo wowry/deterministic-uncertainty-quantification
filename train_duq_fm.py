@@ -44,7 +44,7 @@ def train_model(l_gradient_penalty, length_scale, final_model):
         length_scale,
         gamma,
     )
-    model = model.cuda()
+    model = model
 
     optimizer = torch.optim.SGD(
         model.parameters(), lr=0.05, momentum=0.9, weight_decay=1e-4
@@ -88,7 +88,7 @@ def train_model(l_gradient_penalty, length_scale, final_model):
         x, y = batch
         y = F.one_hot(y, num_classes=10).float()
 
-        x, y = x.cuda(), y.cuda()
+        x, y = x, y
 
         x.requires_grad_(True)
 
@@ -114,7 +114,7 @@ def train_model(l_gradient_penalty, length_scale, final_model):
         x, y = batch
         y = F.one_hot(y, num_classes=10).float()
 
-        x, y = x.cuda(), y.cuda()
+        x, y = x, y
 
         x.requires_grad_(True)
 

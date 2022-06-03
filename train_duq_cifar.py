@@ -83,7 +83,7 @@ def main(
         length_scale,
         gamma,
     )
-    model = model.cuda()
+    model = model
 
     optimizer = torch.optim.SGD(
         model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=weight_decay
@@ -122,7 +122,7 @@ def main(
         optimizer.zero_grad()
 
         x, y = batch
-        x, y = x.cuda(), y.cuda()
+        x, y = x, y
 
         x.requires_grad_(True)
 
@@ -151,7 +151,7 @@ def main(
         model.eval()
 
         x, y = batch
-        x, y = x.cuda(), y.cuda()
+        x, y = x, y
 
         x.requires_grad_(True)
 

@@ -37,8 +37,8 @@ def loop_over_dataloader(model, dataloader):
         scores = []
         accuracies = []
         for data, target in dataloader:
-            data = data.cuda()
-            target = target.cuda()
+            data = data
+            target = target
 
             output = model(data)
             kernel_distance, pred = output.max(1)

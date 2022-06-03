@@ -38,8 +38,8 @@ def train(model, train_loader, optimizer, epoch, loss_fn):
     total_loss = []
 
     for batch_idx, (data, target) in enumerate(tqdm(train_loader)):
-        data = data.cuda()
-        target = target.cuda()
+        data = data
+        target = target
 
         optimizer.zero_grad()
 
@@ -64,8 +64,8 @@ def test(models, test_loader, loss_fn):
 
     for data, target in test_loader:
         with torch.no_grad():
-            data = data.cuda()
-            target = target.cuda()
+            data = data
+            target = target
 
             losses = torch.empty(len(models), data.shape[0])
             predictions = []
@@ -136,12 +136,12 @@ def main():
 
     if args.dataset == "FashionMNIST":
         milestones = [10, 20]
-        ensemble = [CNN(input_size, num_classes).cuda() for _ in range(args.ensemble)]
+        ensemble = [CNN(input_size, num_classes) for _ in range(args.ensemble)]
     else:
         # CIFAR-10
         milestones = [25, 50]
         ensemble = [
-            ResNet(input_size, num_classes).cuda() for _ in range(args.ensemble)
+            ResNet(input_size, num_classes) for _ in range(args.ensemble)
         ]
 
     ensemble = torch.nn.ModuleList(ensemble)
